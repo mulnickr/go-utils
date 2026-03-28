@@ -9,7 +9,7 @@ import (
 
 func main() {
 	// Initialize router
-	router := serve.New()
+	router := serve.Default()
 
 	// Use middleware
 	router.Use(DefaultAuth)
