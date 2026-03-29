@@ -8,7 +8,6 @@ import (
 )
 
 // AllMethods is an array of all methods which will be used if no methods are specified.
-// see: github.com/alexedwards/flow
 var AllMethods = []string{http.MethodGet, http.MethodHead, http.MethodPost, http.MethodPut, http.MethodPatch, http.MethodDelete, http.MethodConnect, http.MethodOptions, http.MethodTrace}
 
 type route struct {

@@ -3,6 +3,8 @@
 *   - Nested route groups
 *   - Request method mapping
 *
+* Based largely on Flow: github.com/alexedwards/flow
+*
 * Example usage:
 *
 * router := serve.Default()
