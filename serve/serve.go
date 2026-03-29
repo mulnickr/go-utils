@@ -1,3 +1,20 @@
+/* Example usage:
+*
+* router := serve.Default()
+* router.Use(DefaultAuth) // auth middleware
+* api = := router.Group("/api/v1") // API group with base path "/api/v1"
+* api.GET("/health", checkHealth) // GET endpoint for "/health"
+* router.ListenAndServe(":5000") // Initialize server
+*
+* func DefaultAuth(next serve.Handler) serve.HandlerFunc {
+*     return serve.HandlerFunc(func(c *serve.Context) {
+*         c.JSON(http.StatusOK, serve.J{"msg": "everyone is authorized!"})
+*         next.ServeHTTP(c) // continue the handler chain
+*     })
+* }
+*
+*
+ */
 package serve
 
 import (
