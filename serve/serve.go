@@ -1,4 +1,9 @@
-/* Example usage:
+/* Package serve is a lightweight net/http wrapper implementing basic routing capabilities and:
+*  - Middleware
+*   - Nested route groups
+*   - Request method mapping
+*
+* Example usage:
 *
 * router := serve.Default()
 * router.Use(DefaultAuth) // auth middleware
@@ -21,11 +26,7 @@ import (
 	"net/http"
 	"slices"
 	"strings"
-
-	"github.com/mulnickr/go-utils/log"
 )
-
-var LOG = log.NewLogger(log.INFO, "Logger")
 
 type Serve struct {
 	NotFound         Handler
@@ -67,7 +68,6 @@ func Default() *Serve {
 }
 
 func (x *Serve) ListenAndServe(host string) {
-	x.logRoutes()
 	http.ListenAndServe(host, x)
 }
 
@@ -121,12 +121,6 @@ func (x *Serve) Handle(pattern string, handler Handler, methods ...string) {
 		}
 		routesLog[pattern] = append(routesLog[pattern], route.method)
 		*x.routes = append(*x.routes, route)
-	}
-}
-
-func (x *Serve) logRoutes() {
-	for k, v := range routesLog {
-		LOG.Info("Registered - %v (%v)\n", k, strings.Join(v, ", "))
 	}
 }
 

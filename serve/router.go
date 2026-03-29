@@ -1,7 +1,3 @@
-// Package serve is a lightweight net/http wrapper implementing basic routing capabilities and:
-//   - Middleware
-//   - Nested route groups
-//   - Request method mapping
 package serve
 
 import (
@@ -9,11 +5,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-
-	"github.com/mulnickr/go-utils"
 )
-
-var logger = log.NewLogger(log.DEBUG, "Serve")
 
 // AllMethods is an array of all methods which will be used if no methods are specified.
 // see: github.com/alexedwards/flow
@@ -41,7 +33,6 @@ func (r *route) match(c context.Context, rq *http.Request, us []string) (context
 				return c, false
 			}
 
-			logger.Debug("Key: %v, Segment: %v\n", key, uv)
 			rq.SetPathValue(key, uv)
 			continue
 		}
@@ -51,6 +42,5 @@ func (r *route) match(c context.Context, rq *http.Request, us []string) (context
 		}
 	}
 
-	logger.Info("(%v) - %v\n", rq.Method, strings.Join(us, "/"))
 	return c, true
 }
