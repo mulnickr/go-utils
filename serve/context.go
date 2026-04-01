@@ -22,12 +22,20 @@ func NewContext(w http.ResponseWriter, r *http.Request) *Context {
 	return c
 }
 
+func (c *Context) Method() string {
+	return c.r.Method
+}
+
 func (c *Context) Header(key string) string {
 	return c.r.Header.Get(key)
 }
 
 func (c *Context) SetHeader(key, value string) {
 	c.r.Header.Set(key, value)
+}
+
+func (c *Context) WriteHeader(status int) {
+	c.w.WriteHeader(status)
 }
 
 func (c *Context) Cookie(key string) (*http.Cookie, error) {
