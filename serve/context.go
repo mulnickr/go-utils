@@ -31,7 +31,7 @@ func (c *Context) Header(key string) string {
 }
 
 func (c *Context) SetHeader(key, value string) {
-	c.r.Header.Set(key, value)
+	c.w.Header().Set(key, value)
 }
 
 func (c *Context) WriteHeader(status int) {

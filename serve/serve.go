@@ -63,7 +63,7 @@ func Default() *Serve {
 			http.Error(c.w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
 		}),
 		Options: HandlerFunc(func(c *Context) {
-			c.w.WriteHeader(http.StatusNoContent)
+			c.WriteHeader(http.StatusNoContent)
 		}),
 		routes: &[]route{},
 	}
