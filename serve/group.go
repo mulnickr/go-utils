@@ -19,7 +19,7 @@ func (g *Group) chain(handler Handler) Handler {
 }
 
 func (g *Group) Use(middleware ...Middleware) {
-	g.w.Use(middleware...)
+	g.middlewares = append(g.middlewares, middleware...)
 }
 
 func (g *Group) Handle(pattern string, handler Handler, methods ...string) {
