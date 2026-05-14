@@ -1,5 +1,7 @@
 package serve
 
+import "strings"
+
 // Group maintains data for a router group.
 // Middleware assigned to a group is only applied to routes within the group.
 // TODO(RM): Validate middleware is limited to group
@@ -43,6 +45,9 @@ func (g *Group) DELETE(pattern string, handler HandlerFunc) {
 }
 
 func (g *Group) Group(path string) *Group {
+	if !strings.HasPrefix(path, "/") {
+		path = "/" + path
+	}
 	child := &Group{
 		w:        g.w,
 		basePath: g.basePath + path,
