@@ -16,8 +16,9 @@ type Context struct {
 
 func NewContext(w http.ResponseWriter, r *http.Request) *Context {
 	c := &Context{
-		r: r,
-		w: w,
+		r:       r,
+		w:       w,
+		Context: r.Context(),
 	}
 	return c
 }
